@@ -1,0 +1,41 @@
+package OOPJAVA.Bankq;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Receipt {
+
+    static int countReceipt = 0;
+    int countDrinks = 0;
+    private double money = 0;
+    List<Beverages> beverages;
+
+
+    public static Receipt create(){
+
+         Receipt receipt = new Receipt();
+        countReceipt++;
+        Customer customer = new Customer();
+
+        return receipt;
+    }
+
+   public Receipt(){
+
+        beverages = new ArrayList<>();
+
+    }
+
+    public void addBeverage(String drink){
+
+        beverages.add(new Beverages(drink));
+        countDrinks++;
+        Customer customer = new Customer();
+        this.money += beverages.get(countDrinks - 1).getPrice();
+    }
+
+    public double getMoney() {
+        return this.money;
+    }
+
+
+}
