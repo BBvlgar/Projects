@@ -1,0 +1,17 @@
+package OOPJAVA.Bankq;
+
+public class Customer extends Person {
+
+    static double averageMoneySpent;
+    static private int count;
+
+    static int totalCustomers(){
+
+        return count;
+    }
+
+    public Customer(){
+
+        count++;
+    }
+}
