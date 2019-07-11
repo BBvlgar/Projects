@@ -1,0 +1,92 @@
+package OOPJAVA.Bankq;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Commands {
+
+    String name;
+    Receipt reciept;
+    List<Receipt> allRec = new ArrayList<>();
+
+    Scanner scanner = new Scanner(System.in);
+
+    public Receipt faktura(){
+
+        reciept = Receipt.create();
+
+        allRec.add(reciept);
+        return reciept;
+    }
+
+    private double allMoney(){
+
+        double all = 0;
+        if (allRec != null) {
+            for (int i = 0; i < allRec.size(); i++) {
+
+                all += allRec.get(i).getMoney();
+            }
+        }
+        return all;
+    }
+
+
+    public void getCommand(String name) {
+
+        this.name = name.toLowerCase();
+
+        if (reciept == null)
+            faktura();
+
+        validity(name);
+
+        switch (name) {
+
+            case "add":
+
+                String input = scanner.nextLine();
+                reciept.addBeverage(input);
+                System.out.println(reciept.beverages.get(reciept.beverages.size() - 1).getName() + " added");
+
+                break;
+            case "close":
+                System.out.println("Total money on receipt:");
+                System.out.println(reciept.getMoney());
+                System.out.println("Type: yes, if you want to close the receipt");
+
+                String decision ="";
+
+                if ("yes".equals(decision = scanner.nextLine())) {
+                    faktura();
+                }
+                break;
+            case "total":
+                System.out.println("Total reciepts -->" + Receipt.countReceipt);
+                System.out.println("Total customers -->" + Customer.totalCustomers());
+                break;
+            case "check":
+
+                System.out.println("Current reciept");
+
+                if (reciept != null)
+                System.out.println(reciept.getMoney());
+
+                System.out.println("All money");
+                System.out.println(allMoney());
+
+                break;
+        }
+    }
+
+    private void validity(String name) {
+
+        if ("add".equals(name) || "close".equals(name) || "total".equals(name) || "check".equals(name)) {
+
+        } else {
+            System.out.println("type command again: add, close, total");
+            String again = scanner.nextLine();
+            getCommand(again);
+        }
+    }
+}
