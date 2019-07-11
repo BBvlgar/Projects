@@ -1,0 +1,26 @@
+package OOPJAVA.Bankq;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("type command: add, close, total");
+        String input =scanner.nextLine();
+
+        Commands command = new Commands();
+
+        boolean firstNew = false;
+
+        while (!"end".equals(input)) {
+
+            command.getCommand(input);
+
+            input = scanner.nextLine();
+        }
+    }
+}
+
+
