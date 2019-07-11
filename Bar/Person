@@ -1,0 +1,9 @@
+package OOPJAVA.Bankq;
+
+public class Person {
+
+    String name;
+    int age;
+    String gender;
+
+}
